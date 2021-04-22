@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
   constructor(public service: AccountService) { }
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    console.log(this.service.currentUser$);
   }
 
   login() {

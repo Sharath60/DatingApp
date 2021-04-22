@@ -1,30 +1,29 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="#">Dating App</a>
+      <a class="navbar-brand" routerLink="/">Dating App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      
-        <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="service.currentUser$">
+      </button>      
+        <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="service.currentUser$ | async">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Matches</a>
+            <a class="nav-link" aria-current="page" routerLink="/members">Matches</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Lists</a>
+            <a class="nav-link" routerLink="/lists">Lists</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#" tabindex="-1">Messages</a>
+            <a class="nav-link " routerLink="/messages">Messages</a>
           </li>
         </ul>
-        <div class="dropdown" *ngIf="service.currentUser$" dropdown>
-          <a class="dropdown-toggle text-light" dropdownToggle >Welcome User</a>
+        <div class="dropdown" *ngIf="service.currentUser$ |async" dropdown>
+          <a class="dropdown-toggle text-light" dropdownToggle >Welcome User </a>
           <div class="dropdown-menu" *dropdownMenu>
             <a  class="dropdown-item">Edit</a>
             <div class="dropdown-divider"></div>
             <a  class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </div>
-        <form *ngIf="(service.currentUser$) === null" #loginfrom="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off" >
+        <form *ngIf="(service.currentUser$ |async) === null" #loginfrom="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off" >
           <input class="form-control me-2" [(ngModel)]="model.UserName" type="text" name="UserName" placeholder="Username" >
           <input class="form-control me-2" type="password" [(ngModel)]="model.Password" name="Password" placeholder="Password" >
           <button class="btn btn-outline-success" type="submit">Login</button>
