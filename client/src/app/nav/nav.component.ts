@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AccountService } from '../_services/account.service';
 export class NavComponent implements OnInit {
   model: any = {};
   //loggedIn = false;
-  constructor(public service: AccountService) { }
+  constructor(public service: AccountService,private router:Router) { }
 
   ngOnInit(): void {
     console.log(this.service.currentUser$);
@@ -18,7 +19,7 @@ export class NavComponent implements OnInit {
   login() {
     this.service.login(this.model).subscribe(response => {
       console.log('Login works');
-      //this.loggedIn = true;
+      this.router.navigateByUrl('members');
     }, error => {
       console.log('Error');
     });

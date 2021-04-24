@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { TesterrorsComponent } from './errors/testerrors/testerrors.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -18,6 +20,8 @@ const routes: Routes = [
       {path:'messages',component:MessagesComponent},
     ]
     },  
+    {path:'errors',component:TesterrorsComponent},
+    {path:'not-found',component:NotFoundComponent},
   {path:'**',component:HomeComponent,pathMatch:'full'}
 ];
 
