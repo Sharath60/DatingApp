@@ -13,15 +13,12 @@ export class NavComponent implements OnInit {
   constructor(public service: AccountService,private router:Router) { }
 
   ngOnInit(): void {
-    console.log(this.service.currentUser$);
+    
   }
 
   login() {
     this.service.login(this.model).subscribe(response => {
-      console.log('Login works');
-      this.router.navigateByUrl('members');
-    }, error => {
-      console.log('Error');
+      this.router.navigateByUrl('members');    
     });
   }
 
@@ -36,7 +33,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.service.logout();
-    //this.loggedIn = false;
+    this.router.navigateByUrl('/');
   }
 
 }
