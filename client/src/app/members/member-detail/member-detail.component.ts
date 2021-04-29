@@ -42,9 +42,9 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
   loadMember() {
-    this.memberService.getMmeber(this.route.snapshot.paramMap.get('username')).subscribe(member => {
+    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;
-      this.galleryImages = this.getImages();
+      this.galleryImages = this.getImages();      
     }
     );
   }

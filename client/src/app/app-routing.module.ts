@@ -5,9 +5,11 @@ import { TesterrorsComponent } from './errors/testerrors/testerrors.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -16,10 +18,11 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     runGuardsAndResolvers:'always',
     children:[
-      {path:'members',component:MemberListComponent,canActivate:[AuthGuard]},
+      {path:'members',component:MemberListComponent},
       {path:'lists',component:ListsComponent},
       {path:'messages',component:MessagesComponent},
-      {path:'members/:username',component:MemberDetailComponent}
+      {path:'members/:username',component:MemberDetailComponent},
+      {path:'member/edit',component:MemberEditComponent,canDeactivate:[PreventUnsavedChangesGuard]}
     ]
     },  
     {path:'errors',component:TesterrorsComponent},
