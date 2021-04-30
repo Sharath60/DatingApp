@@ -22,7 +22,7 @@
       </li>
     </ul>
     <div class="dropdown" *ngIf="(service.currentUser$ |async) as user" dropdown>
-      <img src="{{user.photoUrl}}" alt="{{user.photoUrl}}">
+      <img src="{{user.photoUrl ||'./assets/user.png'}}" alt="{{user.username }}">
       <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}} </a>
       <div class="dropdown-menu" *dropdownMenu>
         <a routerLink="member/edit" class="dropdown-item">Edit</a>

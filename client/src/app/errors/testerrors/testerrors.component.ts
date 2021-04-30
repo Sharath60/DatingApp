@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-testerrors',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class TesterrorsComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
-  baseUrl = "https://localhost:5001/api/";
+  baseUrl = environment.apiUrl;
   validationErrors: string[];
   ngOnInit(): void {
   }
