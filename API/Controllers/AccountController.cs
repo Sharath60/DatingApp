@@ -7,7 +7,6 @@ using API.DTOS;
 using API.Entities;
 using API.Interfaces;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,7 +41,8 @@ namespace API.Controllers
              return new UserDTO(){
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user),
-                KnownAs =user.KnownAs
+                KnownAs =user.KnownAs,
+                Gender = user.Gender
             };
         }
 
@@ -50,7 +50,8 @@ namespace API.Controllers
         [Route("login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.UserName == loginDTO.UserName.ToLower());
+            var user = await _context.Users
+            .Include(p=>p.Photos).SingleOrDefaultAsync(u => u.UserName == loginDTO.UserName.ToLower());
             if (user == null) return Unauthorized("User not found");
             using var hmac = new HMACSHA512(user.PasswordSalt);
 
@@ -63,7 +64,8 @@ namespace API.Controllers
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
-                KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
             };
 
         }

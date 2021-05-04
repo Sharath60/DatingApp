@@ -8,6 +8,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from "ng2-file-upload";
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [],
@@ -22,7 +25,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxGalleryModule,
     FileUploadModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TimeagoModule.forRoot()
   ],
   exports: [
     CommonModule,
@@ -33,7 +39,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxGalleryModule,
     FileUploadModule,
     ReactiveFormsModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    PaginationModule,
+    ButtonsModule,
+    TimeagoModule
   ]
 })
 export class SharedModule { }
