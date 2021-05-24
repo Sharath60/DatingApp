@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
+import { PresenceService } from './_services/presence.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
 baseUrl = environment.apiUrl;
   title = 'Dating App';
   users: any;
-  constructor(private http: HttpClient, private service: AccountService) {
+  constructor(private http: HttpClient, private service: AccountService,
+     private presence: PresenceService) {
 
   }
 
@@ -30,7 +32,11 @@ baseUrl = environment.apiUrl;
 
   setCurrentUser() {    
     const user: User = JSON.parse(localStorage.getItem('user'));
+    if(user)
+    {
     this.service.setCurrentUser(user);
+    this.presence.createHubConnection(user);
+    }
   }
 
 }
