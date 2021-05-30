@@ -26,6 +26,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "API_Production": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,     
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
     }
   }
 }
